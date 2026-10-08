@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>yaasuo6666 | 个人主页</title>
+<meta name="description" content="yaasuo6666 的个人主页 —— 这里是有趣的 yaasuo6666 频道，一起玩耍吧~">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #eef3ff;
+    color: #333;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 130px;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::before {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(91,141,239,0.55), rgba(91,141,239,0));
+    top: -140px; right: -160px;
+  }
+  body::after {
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(159,195,255,0.65), rgba(159,195,255,0));
+    bottom: 40px; left: -160px;
+  }
+
+  a { -webkit-tap-highlight-color: transparent; }
+
+  /* 首页 */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 80px 24px 40px;
+    z-index: 1;
+  }
+  .avatar-ring {
+    padding: 5px; border-radius: 50%;
+    background: linear-gradient(135deg, #5B8DEF, #9fc3ff);
+    box-shadow: 0 8px 22px rgba(91, 141, 239, 0.32);
+  }
+  .avatar {
+    display: block; width: 138px; height: 138px;
+    border-radius: 50%; object-fit: cover;
+    border: 4px solid #fff; background: #eef3ff;
+  }
+  .name {
+    margin-top: 28px;
+    font-size: clamp(1.8rem, 6vw, 2.9rem);
+    font-weight: 800; letter-spacing: 1.5px;
+    color: #1f2d3d;
+  }
+  .name span {
+    background: linear-gradient(135deg, #5B8DEF, #4A90D9);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tagline {
+    margin-top: 14px; max-width: 520px;
+    font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+    color: #6b7280;
+  }
+
+  /* 区块 */
+  .section { padding: 80px 24px; position: relative; z-index: 1; }
+  .container { max-width: 800px; margin: 0 auto; }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 1.85rem);
+    font-weight: 700; color: #1f2d3d;
+  }
+  .section-title::after {
+    content: ""; display: block;
+    width: 46px; height: 4px; margin: 16px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #5B8DEF, #9fc3ff);
+  }
+  .section-sub {
+    margin: 16px 0 44px;
+    text-align: center; font-size: 0.93rem; color: #9aa4b2;
+  }
+
+  /* 下载区 */
+  .download-list {
+    display: flex; flex-direction: column;
+    gap: 14px; max-width: 420px; margin: 0 auto;
+  }
+  .download-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; padding: 16px 24px;
+    font-size: 1rem; font-weight: 600;
+    color: #fff; text-decoration: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #5B8DEF, #4A90D9);
+    box-shadow: 0 8px 22px rgba(91, 141, 239, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(91, 141, 239, 0.4);
+  }
+  .download-btn i { font-size: 1.1rem; }
+
+  /* 联系我 */
+  .socials {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 18px;
+  }
+  .social-link {
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.28rem; color: #5B8DEF;
+    background: #fff;
+    border: 1px solid rgba(91, 141, 239, 0.2);
+    border-radius: 50%; text-decoration: none;
+    box-shadow: 0 4px 14px rgba(31, 45, 61, 0.05);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+  .social-link:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, #5B8DEF, #4A90D9);
+    color: #fff;
+  }
+  .contact-note {
+    margin-top: 30px; text-align: center;
+    font-size: 0.9rem; color: #9aa4b2;
+  }
+  .contact-note a {
+    color: #4A90D9; text-decoration: none;
+    border-bottom: 1px solid rgba(91, 141, 239, 0.35);
+  }
+
+  /* 页脚 */
+  footer {
+    padding: 34px 24px; text-align: center;
+    font-size: 0.85rem; color: #9aa4b2;
+    background: #fff;
+    border-top: 1px solid rgba(31, 45, 61, 0.06);
+    position: relative; z-index: 1;
+  }
+  footer .heart { color: #ff7b8a; margin: 0 2px; }
+
+  /* 液态玻璃底部导航栏 */
+  .bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 420px;
+    height: 76px;
+    border-radius: 38px;
+    z-index: 9999;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    cursor: grab;
+    overflow: hidden;
+    isolation: isolate;
+
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(28px) saturate(230%) brightness(1.05);
+    -webkit-backdrop-filter: blur(28px) saturate(230%) brightness(1.05);
+
+    box-shadow:
+      0 16px 44px rgba(31, 45, 61, 0.24),
+      0 2px 8px rgba(31, 45, 61, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+  .bottom-nav.dragging { cursor: grabbing; }
+
+  .bottom-nav::before {
+    content: "";
+    position: absolute;
+    left: 10%; right: 10%; top: 5px;
+    height: 1.5px;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,1) 50%,
+      rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .nav-blob {
+    position: absolute;
+    top: 6px; left: 6px;
+    height: calc(100% - 12px);
+    width: calc((100% - 12px) / 3);
+    border-radius: 32px;
+    background: linear-gradient(180deg,
+      #ffffff 0%,
+      #e8f0ff 45%,
+      #c4d9ff 100%);
+    box-shadow:
+      0 8px 24px rgba(91, 141, 239, 0.55),
+      0 2px 8px rgba(31, 45, 61, 0.18),
+      inset 0 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 6px rgba(91, 141, 239, 0.28);
+    border: 1.5px solid rgba(255, 255, 255, 0.98);
+    outline: 1px solid rgba(91, 141, 239, 0.35);
+    outline-offset: -2px;
+    transition: transform 0.42s cubic-bezier(0.22, 1.2, 0.36, 1),
+                width 0.42s cubic-bezier(0.22, 1.2, 0.36, 1),
+                box-shadow 0.25s ease;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+  }
+  .bottom-nav.dragging .nav-blob {
+    transition: box-shadow 0.2s ease;
+    box-shadow:
+      0 12px 32px rgba(91, 141, 239, 0.75),
+      0 4px 12px rgba(31, 45, 61, 0.22),
+      inset 0 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 -2px 8px rgba(91, 141, 239, 0.4);
+  }
+
+  .nav-items {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.68rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .nav-item i {
+    font-size: 1.15rem;
+    transition: transform 0.3s ease;
+  }
+  .nav-item.active {
+    color: #1b4fd1;
+    font-weight: 800;
+  }
+  .nav-item.active i {
+    transform: scale(1.15);
+  }
+
+  @media (max-width: 480px) {
+    body { padding-bottom: 120px; }
+    .bottom-nav { width: calc(100% - 24px); bottom: 16px; height: 70px; border-radius: 35px; }
+    .avatar { width: 116px; height: 116px; }
+    .section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 首页 ========== -->
+<section class="hero" id="home">
+  <div class="avatar-ring">
+    <!-- 头像图片和 index.html 放在一起，src 直接写文件名 -->
+    <img class="avatar" src="avatar.jpg" alt="yaasuo6666 的头像" width="138" height="138">
+  </div>
+  <h1 class="name">你好，我是 <span>yaasuo6666</span></h1>
+  <p class="tagline">这里是有趣的 yaasuo6666 频道！一起玩耍吧~</p>
+</section>
+
+<!-- ========== 下载区 ========== -->
+<section class="section" id="download">
+  <div class="container">
+    <h2 class="section-title">下载</h2>
+    <p class="section-sub">点击按钮即可下载</p>
+
+    <div class="download-list">
+      <!-- 每个按钮对应一个文件，改 href 里的文件名即可 -->
+      <a href="https://pub-62564d2c499f49949e8031ac34bbc27d.r2.dev/文件名1.pdf" class="download-btn" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-arrow-down"></i> 下载文件1
+      </a>
+      <a href="https://pub-62564d2c499f49949e8031ac34bbc27d.r2.dev/文件名2.zip" class="download-btn" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-arrow-down"></i> 下载文件2
+      </a>
+      <a href="https://pub-62564d2c499f49949e8031ac34bbc27d.r2.dev/文件名3.rar" class="download-btn" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-arrow-down"></i> 下载文件3
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 联系我 ========== -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2 class="section-title">联系我</h2>
+    <p class="section-sub">在这些地方都能找到我</p>
+
+    <div class="socials">
+      <a href="#" class="social-link" aria-label="GitHub" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://wpa.qq.com/msgrd?v=3&uin=你的QQ号&site=qq&menu=yes" target="_blank" rel="noopener" class="social-link" aria-label="QQ" title="QQ">
+        <i class="fa-brands fa-qq"></i>
+      </a>
+      <a href="mailto:hello@yaasuo6666.com" class="social-link" aria-label="邮箱" title="邮箱">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+    </div>
+
+    <p class="contact-note">
+      想聊点什么？给我发封邮件吧 →
+      <a href="mailto:hello@yaasuo6666.com">hello@yaasuo6666.com</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 XBAOS · 用 <span class="heart">♥</span> 制作</p>
+</footer>
+
+<!-- ========== 底部液态玻璃导航栏 ========== -->
+<nav class="bottom-nav" id="bottomNav">
+  <div class="nav-blob" id="navBlob"></div>
+  <div class="nav-items">
+    <a href="#home"     class="nav-item active" data-index="0">
+      <i class="fa-solid fa-house"></i>首页
+    </a>
+    <a href="#download" class="nav-item" data-index="1">
+      <i class="fa-solid fa-download"></i>下载
+    </a>
+    <a href="#contact"  class="nav-item" data-index="2">
+      <i class="fa-regular fa-paper-plane"></i>联系我
+    </a>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    "use strict";
+
+    var nav   = document.getElementById('bottomNav');
+    var blob  = document.getElementById('navBlob');
+    var items = Array.prototype.slice.call(nav.querySelectorAll('.nav-item'));
+    var n     = items.length;
+    var current  = 0;
+    var dragging = false;
+    var blobLeft = 0;
+
+    function getItemWidth() {
+      return (nav.clientWidth - 12) / n;
+    }
+    function getTargetLeft(index) {
+      return 6 + getItemWidth() * index;
+    }
+    function getBlobWidth() {
+      return getItemWidth();
+    }
+
+    function setBlobTransform() {
+      var translate = blobLeft - 6;
+      var scale = dragging ? 1.08 : 1;
+      blob.style.transform = 'translateX(' + translate + 'px) scale(' + scale + ')';
+    }
+
+    function applyBlob(useTransition) {
+      if (!useTransition) {
+        blob.style.transition = 'none';
+        void blob.offsetWidth;
+      } else {
+        blob.style.transition = '';
+      }
+      blob.style.width = getBlobWidth() + 'px';
+      blobLeft = getTargetLeft(current);
+      setBlobTransform();
+    }
+
+    function setActive(index) {
+      current = index;
+      items.forEach(function (el, i) {
+        el.classList.toggle('active', i === index);
+      });
+    }
+
+    var ids = ['home', 'download', 'contact'];
+    function scrollToIndex(index) {
+      var target = document.getElementById(ids[index]);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function onPointerDown(e) {
+      dragging = true;
+      nav.classList.add('dragging');
+      var rect = nav.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      moveBlobTo(x - getBlobWidth() / 2);
+      if (nav.setPointerCapture) nav.setPointerCapture(e.pointerId);
+    }
+
+    function onPointerMove(e) {
+      if (!dragging) return;
+      var rect = nav.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      moveBlobTo(x - getBlobWidth() / 2);
+    }
+
+    function onPointerUp(e) {
+      if (!dragging) return;
+      dragging = false;
+      nav.classList.remove('dragging');
+
+      var itemW = getItemWidth();
+      var blobCenter = blobLeft + getBlobWidth() / 2;
+      var idx = Math.round((blobCenter - 6 - itemW / 2) / itemW);
+      if (idx < 0) idx = 0;
+      if (idx > n - 1) idx = n - 1;
+
+      setActive(idx);
+      applyBlob(true);
+      scrollToIndex(idx);
+    }
+
+    function moveBlobTo(left) {
+      var w = getBlobWidth();
+      var minLeft = 6;
+      var maxLeft = nav.clientWidth - 6 - w;
+      if (left < minLeft) left = minLeft;
+      if (left > maxLeft) left = maxLeft;
+      blobLeft = left;
+      setBlobTransform();
+    }
+
+    nav.addEventListener('pointerdown', onPointerDown);
+    nav.addEventListener('pointermove', onPointerMove);
+    nav.addEventListener('pointerup', onPointerUp);
+    nav.addEventListener('pointercancel', onPointerUp);
+
+    items.forEach(function (el, i) {
+      el.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        if (dragging) return;
+        setActive(i);
+        applyBlob(true);
+        scrollToIndex(i);
+      });
+    });
+
+    nav.addEventListener('touchmove', function (e) {
+      if (dragging) e.preventDefault();
+    }, { passive: false });
+
+    window.addEventListener('resize', function () { applyBlob(false); });
+    window.addEventListener('load',   function () { applyBlob(false); });
+    applyBlob(false);
+
+    var sections = document.querySelectorAll('section[id]');
+    if ('IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.getAttribute('id');
+            var idx = ids.indexOf(id);
+            if (idx >= 0 && idx !== current) {
+              setActive(idx);
+              applyBlob(true);
+            }
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function (s) { spy.observe(s); });
+    }
+
+  })();
+</script>
+
+</body>
+</html>
